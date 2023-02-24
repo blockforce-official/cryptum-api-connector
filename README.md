@@ -5,7 +5,7 @@ API service to facilitate integration with Cryptum SDK and blockchain APIs.
 ## Technologies
 
 - [Nest framework](https://github.com/nestjs/nest)
-- [Node.js v14](https://nodejs.org)
+- [Node.js v16](https://nodejs.org)
 - [Cryptum SDK](https://github.com/blockforce-official/cryptum-sdk)
 
 ## Configuration
