@@ -13,6 +13,7 @@ import { AppModule } from './app.module';
 import * as db from './db';
 import { getAzureKeyVaultSecret } from './kms/azure';
 import { getAWSSecret } from './kms/aws';
+import { CryptumExceptionFilter } from './filters/cryptum-exception.filter';
 
 async function bootstrap() {
   const { flags } = meow(
@@ -89,6 +90,7 @@ async function bootstrap() {
       stopAtFirstError: true,
     }),
   );
+  app.useGlobalFilters(new CryptumExceptionFilter());
 
   const swaggerConfig = new DocumentBuilder().setTitle('Cryptum API connector').setVersion('1.0').build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
