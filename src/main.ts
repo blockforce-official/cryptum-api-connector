@@ -4,7 +4,7 @@ dotenv.config({
 });
 
 import { ValidationPipe } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
+import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import meow from 'meow';
@@ -95,7 +95,9 @@ async function bootstrap() {
       stopAtFirstError: true,
     }),
   );
-  app.useGlobalFilters(new CryptumExceptionFilter());
+
+  const adapterHost = app.get(HttpAdapterHost);
+  app.useGlobalFilters(new CryptumExceptionFilter(adapterHost));
 
   const swaggerConfig = new DocumentBuilder().setTitle('Cryptum API connector').setVersion('1.0').build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);

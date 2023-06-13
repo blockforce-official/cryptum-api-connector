@@ -228,6 +228,23 @@ export class CryptumService {
       fee,
     } as EthereumTransferTransactionInput);
   }
+  async createChilizTransferTransaction(input: CreateEthereumTransferTransactionDto): Promise<SignedTransaction> {
+    const txController = this.sdk.getTransactionController();
+    const walletController = this.sdk.getWalletController();
+    const { privateKey, tokenSymbol, contractAddress, amount, destination, fee } = input;
+    const wallet = await walletController.generateWalletFromPrivateKey({
+      protocol: Protocol.CHILIZ,
+      privateKey,
+    });
+    return txController.createChilizTransferTransaction({
+      wallet,
+      tokenSymbol,
+      contractAddress,
+      amount,
+      destination,
+      fee,
+    } as EthereumTransferTransactionInput);
+  }
   async createBitcoinTransferTransaction(input: CreateBitcoinTransferTransactionDto): Promise<SignedTransaction> {
     const txController = this.sdk.getTransactionController();
     const walletController = this.sdk.getWalletController();
