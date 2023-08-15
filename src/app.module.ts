@@ -7,6 +7,7 @@ import { PricesController } from './prices/prices.controller';
 import { BlockController } from './block/block.controller';
 import { AuthMiddleware } from './auth.middleware';
 import { KmsController } from './kms/kms.controller';
+import { TokenController } from './token/token.controller';
 
 @Module({
   controllers: [
@@ -16,6 +17,7 @@ import { KmsController } from './kms/kms.controller';
     TransactionController,
     PricesController,
     BlockController,
+    TokenController
   ],
   providers: [CryptumService],
 })

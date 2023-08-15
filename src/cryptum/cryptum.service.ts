@@ -48,6 +48,12 @@ import {
   StellarTransferTransactionInput,
 } from 'cryptum-sdk/dist/src/features/transaction/entity';
 import config from '../config';
+import { GetInfoDto } from 'src/token/dto/get-info.dto';
+import { GetBalanceDto } from 'src/token/dto/get-balance.dto';
+import { TokenTransferDto } from 'src/token/dto/transfer.dto';
+import { TokenCreateDto } from 'src/token/dto/create.dto';
+import { MintDto } from 'src/token/dto/mint.dto';
+import { BurnDto } from 'src/token/dto/burn.dto';
 
 @Injectable()
 export class CryptumService {
@@ -55,6 +61,24 @@ export class CryptumService {
 
   constructor() {
     this.sdk = new CryptumSdk(config.cryptumConfig());
+  }
+  async getInfo(input: GetInfoDto) {
+    return this.sdk.getTokenController().getInfo(input);
+  }
+  async getBalance(input: GetBalanceDto) {
+    return this.sdk.getTokenController().getBalance(input);
+  }
+  async transfer(input: TokenTransferDto) {
+    return this.sdk.getTokenController().transfer(input);
+  }
+  async create(input: TokenCreateDto) {
+    return this.sdk.getTokenController().create(input);
+  }
+  async mint(input: MintDto) {
+    return this.sdk.getTokenController().mint(input);
+  }
+  async burn(input: BurnDto) {
+    return this.sdk.getTokenController().burn(input);
   }
   generateRandomMnemonic(strength?: number): string {
     return this.sdk.getWalletController().generateRandomMnemonic(strength);
