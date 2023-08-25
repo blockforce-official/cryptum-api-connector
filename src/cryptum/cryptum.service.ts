@@ -7,7 +7,6 @@ import { GetUtxosDto } from '../transaction/dto/get-utxo.dto';
 import { SendTransactionDto } from '../transaction/dto/send-transaction.dto';
 import { Transaction, UTXO, TransactionResponse } from '../transaction/dto/transaction.dto';
 import { GetWalletInfoDto } from '../wallet/dto/get-wallet-info.dto';
-// import { Wallet } from '../wallet/dto/wallet.dto';
 import { GenerateWalletDto } from '../wallet/dto/generate-wallet.dto';
 import {
   CreateBitcoinTransferTransactionDto,
@@ -54,6 +53,7 @@ import { TokenTransferDto } from 'src/token/dto/transfer.dto';
 import { TokenCreateDto } from 'src/token/dto/create.dto';
 import { MintDto } from 'src/token/dto/mint.dto';
 import { BurnDto } from 'src/token/dto/burn.dto';
+import { ApproveDto } from 'src/token/dto/approve.dto';
 
 @Injectable()
 export class CryptumService {
@@ -69,16 +69,54 @@ export class CryptumService {
     return this.sdk.getTokenController().getBalance(input);
   }
   async transfer(input: TokenTransferDto) {
-    return this.sdk.getTokenController().transfer(input);
+    const { protocol, privateKey } = input;
+    delete input.privateKey;
+    const walletController = this.sdk.getWalletController();
+    const wallet = await walletController.generateWalletFromPrivateKey({
+      protocol,
+      privateKey,
+    });
+    return this.sdk.getTokenController().transfer({ ...input, wallet });
   }
   async create(input: TokenCreateDto) {
-    return this.sdk.getTokenController().create(input);
+    const { protocol, privateKey } = input;
+    delete input.privateKey;
+    const walletController = this.sdk.getWalletController();
+    const wallet = await walletController.generateWalletFromPrivateKey({
+      protocol,
+      privateKey,
+    });
+    return this.sdk.getTokenController().create({ ...input, wallet });
   }
   async mint(input: MintDto) {
-    return this.sdk.getTokenController().mint(input);
+    const { protocol, privateKey } = input;
+    delete input.privateKey;
+    const walletController = this.sdk.getWalletController();
+    const wallet = await walletController.generateWalletFromPrivateKey({
+      protocol,
+      privateKey,
+    });
+    return this.sdk.getTokenController().mint({ ...input, wallet });
   }
   async burn(input: BurnDto) {
-    return this.sdk.getTokenController().burn(input);
+    const { protocol, privateKey } = input;
+    delete input.privateKey;
+    const walletController = this.sdk.getWalletController();
+    const wallet = await walletController.generateWalletFromPrivateKey({
+      protocol,
+      privateKey,
+    });
+    return this.sdk.getTokenController().burn({ ...input, wallet });
+  }
+  async approve(input: ApproveDto) {
+    const { protocol, privateKey } = input;
+    delete input.privateKey;
+    const walletController = this.sdk.getWalletController();
+    const wallet = await walletController.generateWalletFromPrivateKey({
+      protocol,
+      privateKey,
+    });
+    return this.sdk.getTokenController().burn({ ...input, wallet });
   }
   generateRandomMnemonic(strength?: number): string {
     return this.sdk.getWalletController().generateRandomMnemonic(strength);

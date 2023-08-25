@@ -1,4 +1,4 @@
-import { IsEnum, IsObject, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsOptional, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Protocol } from '../../cryptum/interfaces/protocols.interface';
 
@@ -10,8 +10,10 @@ export class GetBalanceDto {
   @ApiProperty()
   tokenAddress: string;
 
-  @ApiProperty()
-  tokenUid: string;
+  @ApiProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  tokenUid?: string;
 
   @ApiProperty()
   address: string;
