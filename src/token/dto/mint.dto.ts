@@ -2,7 +2,7 @@ import { IsEnum, IsOptional, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Protocol } from '../../cryptum/interfaces/protocols.interface';
 import { Wallet } from 'cryptum-sdk/dist/src/features/wallet/entity';
-import { CreateTransactionDto } from "../../transaction/dto/create-transaction.dto";
+import { CreateTransactionDto } from '../../transaction/dto/create-transaction.dto';
 
 export class MintDto extends CreateTransactionDto {
   @ApiProperty()
@@ -10,9 +10,11 @@ export class MintDto extends CreateTransactionDto {
   protocol: Protocol;
 
   @ApiProperty()
+  @IsString()
   token: string;
 
   @ApiProperty()
+  @IsString()
   privateKey: string;
 
   @ApiProperty({ required: false })
@@ -21,6 +23,7 @@ export class MintDto extends CreateTransactionDto {
   destination?: string;
 
   @ApiProperty()
+  @IsString()
   amount: string;
 
   @ApiProperty({ required: false })

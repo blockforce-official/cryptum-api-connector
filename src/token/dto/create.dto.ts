@@ -9,6 +9,7 @@ export class TokenCreateDto extends CreateTransactionDto  {
   protocol: Protocol;
 
   @ApiProperty()
+  @IsString()
   privateKey: string;
 
   @ApiProperty()

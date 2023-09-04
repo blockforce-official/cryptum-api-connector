@@ -1,34 +1,41 @@
-import { IsEnum, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsEnum, IsOptional, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Protocol } from '../../cryptum/interfaces/protocols.interface';
 import { Wallet } from 'cryptum-sdk/dist/src/features/wallet/entity';
-import { CreateTransactionDto } from '../../transaction/dto/create-transaction.dto';
 
-export class ApproveDto extends CreateTransactionDto {
+export class CallMethodTransactionDto {
   @ApiProperty()
   @IsEnum(Protocol)
   protocol: Protocol;
 
   @ApiProperty()
-  @IsString()
-  token: string;
-
-  @ApiProperty()
-  @IsString()
   privateKey: string;
 
   @ApiProperty()
   @IsString()
-  spender: string;
+  from: string;
 
   @ApiProperty()
   @IsString()
-  amount: string;
+  contractAddress: string;
 
-  @ApiProperty({ required: false })
+  @ApiProperty()
+  @IsArray()
+  contractAbi: Array<any>;
+
+  @ApiProperty()
   @IsString()
-  @IsOptional()
-  feeCurrency?: string;
+  method: string;
+
+  @ApiProperty()
+  @IsArray()
+  params: any[];
+
+  @ApiProperty()
+  value: any;
+
+  @ApiProperty()
+  feeCurrency: string;
 
   @ApiProperty()
   fee: object | string;

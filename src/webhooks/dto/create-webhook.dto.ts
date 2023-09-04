@@ -1,25 +1,29 @@
-import { IsEnum, IsOptional, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { IsEnum, IsNumber, IsString } from 'class-validator';
 import { Protocol } from '../../cryptum/interfaces/protocols.interface';
 
-export class GetBalanceDto {
+export class CreateWebhookDto {
   @ApiProperty()
   @IsEnum(Protocol)
   protocol: Protocol;
 
   @ApiProperty()
-  tokenAddress: string;
-
-  @ApiProperty({ required: false })
   @IsString()
-  @IsOptional()
-  tokenUid?: string;
-
-  @ApiProperty({ required: false })
-  @IsString()
-  @IsOptional()
-  tokenId?: string;
+  asset: string;
 
   @ApiProperty()
+  @IsString()
+  url: string;
+
+  @ApiProperty()
+  @IsString()
+  event: string;
+
+  @ApiProperty()
+  @IsString()
   address: string;
+
+  @ApiProperty()
+  @IsNumber()
+  confirmations: number;
 }

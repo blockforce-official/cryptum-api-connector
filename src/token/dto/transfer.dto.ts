@@ -16,6 +16,7 @@ export class TokenTransferDto extends CreateTransactionDto  {
   token: string;
 
   @ApiProperty()
+  @IsString()
   privateKey: string;
 
   @ApiProperty({ required: false })
@@ -50,7 +51,7 @@ export class TokenTransferDto extends CreateTransactionDto  {
   @ApiProperty({ required: false })
   @IsString()
   @IsOptional()
-  ffee: object | string;
+  fee: string;
 
   @ApiProperty({ required: false })
   @IsString()

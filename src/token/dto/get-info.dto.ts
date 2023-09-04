@@ -20,9 +20,11 @@ export class GetInfoQuerystringDto {
 
 export class GetInfoDto extends GetInfoQuerystringDto {
   @ApiProperty()
+  @IsString()
   name: string;
 
   @ApiProperty()
+  @IsString()
   symbol: string;
 
   @ApiProperty({ required: false })
@@ -31,6 +33,7 @@ export class GetInfoDto extends GetInfoQuerystringDto {
   totalSupply?: string;
 
   @ApiProperty()
+  @IsString()
   decimals: string;
 
   constructor(info: any) {

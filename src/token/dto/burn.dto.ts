@@ -2,7 +2,7 @@ import { IsEnum, IsOptional, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Protocol } from '../../cryptum/interfaces/protocols.interface';
 import { Wallet } from 'cryptum-sdk/dist/src/features/wallet/entity';
-import { CreateTransactionDto } from "../../transaction/dto/create-transaction.dto";
+import { CreateTransactionDto } from '../../transaction/dto/create-transaction.dto';
 
 export class BurnDto extends CreateTransactionDto {
   @ApiProperty()
@@ -10,12 +10,15 @@ export class BurnDto extends CreateTransactionDto {
   protocol: Protocol;
 
   @ApiProperty()
+  @IsString()
   token: string;
 
   @ApiProperty()
+  @IsString()
   privateKey: string;
 
   @ApiProperty()
+  @IsString()
   amount: string;
 
   @ApiProperty({ required: false })

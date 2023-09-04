@@ -1,19 +1,27 @@
-import { IsEnum, IsOptional, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
 import { Protocol } from '../../cryptum/interfaces/protocols.interface';
 
-export class GetBalanceDto {
+export class ApproveLootBoxDto {
   @ApiProperty()
   @IsEnum(Protocol)
   protocol: Protocol;
 
   @ApiProperty()
+  @IsString()
+  privateKey: string;
+
+  @ApiProperty()
+  @IsString()
   tokenAddress: string;
 
-  @ApiProperty({ required: false })
+  @ApiProperty()
   @IsString()
-  @IsOptional()
-  tokenUid?: string;
+  amount: string;
+
+  @ApiProperty()
+  @IsString()
+  lootBoxAddress: string;
 
   @ApiProperty({ required: false })
   @IsString()
@@ -21,5 +29,6 @@ export class GetBalanceDto {
   tokenId?: string;
 
   @ApiProperty()
-  address: string;
+  @IsString()
+  tokenType: 'ERC721' | 'ERC1155' | 'ERC20';
 }
