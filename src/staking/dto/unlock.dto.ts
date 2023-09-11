@@ -8,8 +8,8 @@ export class UnlockStakingDto {
   protocol: Protocol;
 
   @ApiProperty()
-  @IsBoolean()
-  amount: boolean;
+  @IsString()
+  amount: string;
 
   @ApiProperty()
   @IsString()

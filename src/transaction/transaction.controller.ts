@@ -7,8 +7,10 @@ import {
   CreateCardanoTransferTransactionDto,
   CreateCeloTransferTransactionDto,
   CreateEthereumTransferTransactionDto,
+  CreateHathorTokenTransactionFromUTXODto,
   CreateHathorTransferTransactionDto,
   CreateRippleTransferTransactionDto,
+  CreateSolanaCustomProgramInteractionDto,
   CreateSolanaTransferTransactionDto,
   CreateStellarTransferTransactionDto,
   CreateTrustlineTransactionDto,
@@ -113,32 +115,12 @@ export class TransactionController {
   createSmartContractDeployTransaction(@Body() body: CreateSmartContractDeployTransactionDto) {
     return this.cryptumService.createSmartContractDeployTransaction(body);
   }
-  @Post('token/deploy/ethereum')
-  createEthTokenDeployTransaction(@Body() body: CreateEthTokenDeployTransactionDto) {
-    return this.cryptumService.createEthTokenDeployTransaction(body);
+  @Post('/solanaCustom/create')
+  async createSolanaCustomProgramInteraction(@Body() body: CreateSolanaCustomProgramInteractionDto) {
+    return this.cryptumService.createSolanaCustomProgramInteraction(body);
   }
-  @Post('token/deploy/hathor')
-  createHathorTokenDeployTransaction(@Body() body: CreateHathorTokenDeployTransaction) {
-    return this.cryptumService.createHathorTokenDeployTransaction(body);
-  }
-  @Post('token/mint/hathor')
-  createHathorMintTokenTransaction(@Body() body: CreateHathorMintTokenTransaction) {
-    return this.cryptumService.createHathorMintTokenTransaction(body);
-  }
-  @Post('token/burn/hathor')
-  createHathorMeltTokenTransaction(@Body() body: CreateHathorMeltTokenTransaction) {
-    return this.cryptumService.createHathorMeltTokenTransaction(body);
-  }
-  @Post('token/deploy/solana')
-  createSolanaTokenDeployTransaction(@Body() body: CreateSolanaTokenDeployTransaction) {
-    return this.cryptumService.createSolanaTokenDeployTransaction(body);
-  }
-  @Post('token/mint/solana')
-  createSolanaTokenMintTransaction(@Body() body: CreateSolanaTokenMintTransaction) {
-    return this.cryptumService.createSolanaTokenMintTransaction(body);
-  }
-  @Post('token/burn/solana')
-  createSolanaTokenBurnTransaction(@Body() body: CreateSolanaTokenMintTransaction) {
-    return this.cryptumService.createSolanaTokenBurnTransaction(body);
+  @Post('/hathorTokenTxFromUTXO/create')
+  async createHathorTokenTransactionFromUTXO(@Body() body: CreateHathorTokenTransactionFromUTXODto) {
+    return this.cryptumService.createHathorTokenTransactionFromUTXO(body);
   }
 }

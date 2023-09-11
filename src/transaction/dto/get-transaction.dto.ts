@@ -1,9 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEnum } from 'class-validator';
+import { IsEnum, IsString } from 'class-validator';
 import { Protocol } from '../../cryptum/interfaces/protocols.interface';
 
 export class GetTransactionByHashDto {
   @ApiProperty()
+  @IsString()
   hash: string;
 
   @ApiProperty()

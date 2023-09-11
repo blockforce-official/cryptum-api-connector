@@ -12,5 +12,6 @@ export class ActivateStakingDto {
   privateKey: string;
 
   @ApiProperty()
+  @IsString()
   validator: string;
 }

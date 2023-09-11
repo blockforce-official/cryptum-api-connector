@@ -12,6 +12,5 @@ export class WithdrawStakingDto {
   privateKey: string;
 
   @ApiProperty()
-  @IsNumber()
   index: number;
 }

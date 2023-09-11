@@ -1,6 +1,7 @@
 import { ApiProperty, OmitType } from '@nestjs/swagger';
-import { IsEnum, IsNotEmpty, IsNumberString, IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsEnum, IsNotEmpty, IsNumberString, IsOptional, IsString } from 'class-validator';
 import { Protocol, TrustlineProtocol } from '../../cryptum/interfaces/protocols.interface';
+import { TransactionHathorType, TransactionType } from './transaction.dto';
 
 export class EthFee {
   gas: number;
@@ -205,4 +206,78 @@ export class CreateSolanaTransferTransactionDto extends OmitType(CreateTransferT
   @IsString()
   @IsNotEmpty()
   destination: string;
+}
+
+export class CreateHathorTokenTransactionFromUTXODto {
+  @ApiProperty()
+  @IsEnum(Protocol)
+  protocol: Protocol;
+
+  @ApiProperty()
+  type: TransactionHathorType;
+
+  @ApiProperty()
+  inputs: InputHathor[];
+
+  @ApiProperty()
+  @IsString()
+  tokenName: string;
+
+  @ApiProperty()
+  @IsString()
+  tokenSymbol: string;
+
+  @ApiProperty()
+  @IsString()
+  amount: string;
+
+  @ApiProperty()
+  @IsString()
+  address: string;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  changeAddress: string;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  mintAuthorityAddress: string;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  meltAuthorityAddress: string;
+
+  @ApiProperty({ required: false })
+  @IsBoolean()
+  @IsOptional()
+  testnet: boolean;
+}
+
+export class InputHathor extends Input {
+  hex: string;
+  value: string;
+  blockhash: string;
+}
+
+export class CreateSolanaCustomProgramInteractionDto {
+  @ApiProperty()
+  @IsEnum(Protocol)
+  protocol: Protocol;
+
+  @ApiProperty()
+  @IsString()
+  privateKey: string;
+
+  @ApiProperty()
+  keys: [];
+
+  @ApiProperty()
+  @IsString()
+  programId: string;
+
+  @ApiProperty()
+  data: Buffer;
 }

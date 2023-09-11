@@ -16,8 +16,6 @@ import { PendingWithdrawalsDto } from './dto/pending-withdrawals.dto';
 import { GetGroupsVotedForByAccountDto } from './dto/get-groups-voted-for-by-account.dto.ts';
 import { GetVotesForGroupByAccountDto } from './dto/get-votes-for-group-by-account.dto';
 import { GetAccountSummaryDto } from './dto/get-account-sumary.dto';
-import { GetMethodAbiDto } from './dto/get-method-abi.dto';
-import { FindLesserGreaterDto } from './dto/find-lesser-greater.dto';
 
 @ApiTags('staking')
 @Controller('staking')
@@ -90,15 +88,5 @@ export class StakingController {
   async getAccountSummary(@Query() getAccountSummaryDto: GetAccountSummaryDto) {
     const { address, protocol } = getAccountSummaryDto;
     return await this.cryptumService.getAccountSummary({ protocol, address });
-  }
-  @Get('/:contract/abi')
-  async getMethodAbi(@Query() getMethodAbiDto: GetMethodAbiDto, @Param('contract') contract: string) {
-    const { protocol, method } = getMethodAbiDto;
-    return await this.cryptumService.getMethodAbi({ protocol, contract, method });
-  }
-  @Get('/findLesserGreater')
-  async findLesserGreater(@Query() findLesserGreaterDto: FindLesserGreaterDto) {
-    const { protocol, validator, network, amount } = findLesserGreaterDto;
-    return await this.cryptumService.findLesserGreater({ protocol, amount, network, validator });
   }
 }

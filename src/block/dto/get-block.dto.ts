@@ -1,11 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEnum } from 'class-validator';
+import { IsEnum, IsString } from 'class-validator';
 import { Protocol } from '../../cryptum/interfaces/protocols.interface';
 
 export class Block {}
 
 export class GetBlockDto {
   @ApiProperty()
+  @IsString()
   block: string;
 
   @ApiProperty()

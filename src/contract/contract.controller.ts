@@ -22,14 +22,14 @@ export class ContractController {
   }
   @Post('/method-transaction')
   async callMethodTransaction(@Body() callMethodTransactionDto: CallMethodTransactionDto) {
-    return await this.cryptumService.callMethodTransactionNft(callMethodTransactionDto);
+    return await this.cryptumService.callMethodTransaction(callMethodTransactionDto);
   }
   @Post('/deploy-contract')
   async deploy(@Body() deployDto: DeployDto) {
-    return await this.cryptumService.deployNft(deployDto);
+    return await this.cryptumService.deploy(deployDto);
   }
   @Post('deploy-token')
   async deployToken(@Body() deployTokenDto: DeployTokenDto) {
-    return await this.cryptumService.deployTokenNft(deployTokenDto);
+    return await this.cryptumService.deployToken(deployTokenDto);
   }
 }
