@@ -7,6 +7,11 @@ import { PricesController } from './prices/prices.controller';
 import { BlockController } from './block/block.controller';
 import { AuthMiddleware } from './auth.middleware';
 import { KmsController } from './kms/kms.controller';
+import { TokenController } from './token/token.controller';
+import { ContractController } from './contract/contract.controller';
+import { WebhooksController } from './webhooks/webhooks.controller';
+import { LootboxController } from './lootbox/lootbox.controller';
+import { StakingController } from './staking/staking.controller';
 
 @Module({
   controllers: [
@@ -16,6 +21,11 @@ import { KmsController } from './kms/kms.controller';
     TransactionController,
     PricesController,
     BlockController,
+    TokenController,
+    ContractController,
+    WebhooksController,
+    LootboxController,
+    StakingController,
   ],
   providers: [CryptumService],
 })

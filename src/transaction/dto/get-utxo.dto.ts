@@ -1,9 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEnum } from 'class-validator';
+import { IsEnum, IsString, isString } from 'class-validator';
 import { Protocol } from '../../cryptum/interfaces/protocols.interface';
 
 export class GetUtxosDto {
   @ApiProperty()
+  @IsString()
   address: string;
 
   @ApiProperty()
